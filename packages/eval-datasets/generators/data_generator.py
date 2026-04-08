@@ -39,9 +39,22 @@ class CallScript:
             "turns": self.turns
         }
 
+class DataGenerator:
+
+    def __init__(self, output_path):
+        self.output_path = output_path
+
+    def save(self, metadata, script):
+        record = {
+            "generated_at": datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+            "metadata": metadata.to_dict(),
+            "script": script.to_dict()
+        }
+        with open(self.output_path, "a") as f:
+            f.write(json.dumps(record) + "\n")
 
 if __name__ == "__main__":
-    # create a metadata object
+
     meta = CallMetadata(
         call_id="CALL_001",
         scenario="balance_enquiry",
@@ -50,12 +63,12 @@ if __name__ == "__main__":
         duration_seconds=120
     )
 
-    # create a script object
     script = CallScript(call_id="CALL_001", scenario="balance_enquiry")
     script.add_turn("agent", "Good morning, how can I help you today?")
     script.add_turn("customer", "Hi, I'd like to check my account balance please.")
     script.add_turn("agent", "Of course, can I take your account number?")
 
-    # print both as dictionaries
-    print(meta.to_dict())
-    print(script.to_dict())
+    generator = DataGenerator(output_path="call_data.jsonl")
+    generator.save(meta, script)
+
+    print("saved successfully")
