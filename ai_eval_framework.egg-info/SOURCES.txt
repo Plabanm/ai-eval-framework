@@ -1,0 +1,17 @@
+README.md
+pyproject.toml
+ai_eval_framework.egg-info/PKG-INFO
+ai_eval_framework.egg-info/SOURCES.txt
+ai_eval_framework.egg-info/dependency_links.txt
+ai_eval_framework.egg-info/requires.txt
+ai_eval_framework.egg-info/top_level.txt
+packages/__init__.py
+packages/eval_adapters/__init__.py
+packages/eval_adapters/connections/__init__.py
+packages/eval_adapters/connections/config.py
+packages/eval_datasets/__init__.py
+packages/eval_datasets/generators/__init__.py
+packages/eval_datasets/generators/data_generator.py
+packages/eval_runners/__init__.py
+packages/eval_runners/transcription/__init__.py
+packages/eval_runners/transcription/transcription_eval.py
