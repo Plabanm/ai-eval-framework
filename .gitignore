@@ -6,3 +6,5 @@ venv/
 *.jsonl
 *.log
 errors.log
+.venv/
+.pytest_cache/
