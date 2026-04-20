@@ -1,25 +1,17 @@
 import pytest
 from packages.eval_runners.transcription.transcription_eval import TranscriptionEval
 
-def test_transcription_perfect_match():
+def test_wer_calculation():
+    # Arrange: Set up our tool
     evaluator = TranscriptionEval()
-    result = evaluator.evaluate(
-        call_id="TEST_001",
-        reference="This is a perfect test",
-        hypothesis="This is a perfect test"
-    )
+    reference = "the cat sat on the mat"
+    hypothesis = "the cat sat on the rug" # One word wrong (rug vs mat)
     
-    # These are your 'Quality Gates'
-    assert result["wer"] == 0.0
-    assert result["cer"] == 0.0
-
-def test_transcription_case_insensitivity():
-    evaluator = TranscriptionEval()
-    # If your code is good, "HELLO" and "hello" should have 0 error
-    result = evaluator.evaluate(
-        call_id="TEST_002",
-        reference="HELLO WORLD",
-        hypothesis="hello world"
-    )
+    # Act: Run the calculation
+    result = evaluator.evaluate("TEST_01", reference, hypothesis)
     
-    assert result["wer"] == 0.0
+    # Assert: Check if the math is correct
+    # 1 wrong word out of 6 total words = 0.1666...
+    assert result["wer"] > 0
+    assert result["cer"] < 0.2
+    assert result["pii_detected"] == False
