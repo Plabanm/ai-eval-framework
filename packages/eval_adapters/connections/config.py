@@ -1,20 +1,35 @@
 import os
+from dotenv import load_dotenv
 
-ENVIRONMENT = os.getenv("EVAL_ENV", "local")
+load_dotenv()
 
-if ENVIRONMENT == "local":
-    config = {
-        "transcription_model": "whisper",
+# THE MISSING PIECE: Ensure these are defined at the top level
+EVAL_ENV = os.getenv("EVAL_ENV", "local")
+OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
+# Thresholds
+QUALITY_THRESHOLDS = {
+    "max_wer": 0.15,
+    "min_accuracy": 1.0,
+    "min_llm_score": 0.8
+}
+
+if EVAL_ENV == "local":
+    ACTIVE_CONFIG = {
         "llm_model": "llama3.2",
-        "output_path": "data/output/call_data.jsonl",
-        "log_path": "data/logs/errors.log",
-    }
-elif ENVIRONMENT == "prod":
-    config = {
-        "transcription_model": "parakeet",
-        "llm_model": "gemini-flash-2.0",
-        "output_path": "/prod/data/call_data.jsonl",
-        "log_path": "/prod/logs/errors.log"
+        "results_path": "data/results/local_run.jsonl"
     }
 else:
-    raise ValueError(f"Unknown environment: {ENVIRONMENT}")
+    ACTIVE_CONFIG = {
+        "llm_model": "gemini-3-flash-preview",
+        "results_path": "data/results/prod_run.jsonl"
+    }
+
+# config.py
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+ACTIVE_CONFIG = {
+    "results_path": os.path.join(BASE_DIR, "data/results/prod_run.jsonl")
+}    

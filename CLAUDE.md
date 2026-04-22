@@ -7,7 +7,7 @@ Career goal: AI Quality Lead in 12-18 months.
 
 ## Pipeline Being Evaluated
 
-Transcription → Sentiment/Emotion → Punctuation → Relevancy → LLM (Gemini Flash 2.0)
+AudioIngestion → Sentiment/Emotion → Punctuation → RouteJudge → ResponseSynthesis
 
 ## Repo Structure
 
@@ -20,7 +20,7 @@ Transcription → Sentiment/Emotion → Punctuation → Relevancy → LLM (Gemin
 
 ## Current Task
 
-Building first eval module: transcription_eval.py in eval-runners
+Building first eval module: audio_ingestion_eval.py in eval-runners
 Checks: WER, PII Detection, Hallucination
 
 ## Tech Stack
@@ -44,10 +44,10 @@ WHY before HOW. QA analogies. Build real things only.
 
 ## The 4 Services We Evaluate
 
-1. Transcription (Parakeet) — WAV → word-level JSON
-2. Metadata Enrichment (spaCy + RoBERTa) — JSON → enriched JSON
-3. Call Relevancy (MiniLM) — enriched JSON → relevancy JSON
-4. OnDemand LLM (Gemini Flash 2.0) — enriched JSON → summary + RAG answers
+1. AudioIngestion (Parakeet) — WAV → word-level JSON
+2. SemanticEnrichment (spaCy + RoBERTa) — JSON → enriched JSON
+3. RouteJudge (MiniLM) — enriched JSON → routing decision JSON
+4. ResponseSynthesis (Gemini Flash 2.0) — enriched JSON → summary + RAG answers
 
 ## Data Strategy
 
@@ -58,4 +58,4 @@ WHY before HOW. QA analogies. Build real things only.
 ## Next Task
 
 Build packages/eval-datasets/generators/data_generator.py
-Then: packages/eval-runners/transcription_eval.py
+Then: packages/eval-runners/audio_ingestion_eval.py

@@ -15,3 +15,10 @@ class DatasetRegistry:
         """Isolate the high-stakes data."""
         # Check for PII leaks or low confidence
         return df[(df['pii_detected'] == True) | (df['wer'] > 0.5)]
+    
+    def join_evals(self, df_a, df_b, join_on="call_id"):
+        """
+        Combines results from two services (e.g., ASR and Enrichment) 
+        so we can see how ASR errors impact Sentiment accuracy.
+        """
+        return pd.merge(df_a, df_b, on=join_on, suffixes=('_asr', '_enrich'))

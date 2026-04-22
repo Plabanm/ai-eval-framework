@@ -1,12 +1,9 @@
-from jiwer import wer
 import jiwer
-import json
 from datetime import datetime
 from presidio_analyzer import AnalyzerEngine
-from packages.eval_adapters.connections.config import config
 from packages.eval_runners.base_eval import BaseEval
 
-class TranscriptionEval(BaseEval):
+class AudioIngestionEval(BaseEval):
 
     def __init__(self):
         super().__init__() # This calls the Parent's __init__ to setup self.results
@@ -46,7 +43,7 @@ class TranscriptionEval(BaseEval):
     
 
 if __name__ == "__main__":
-    evaluator = TranscriptionEval()
+    evaluator = AudioIngestionEval()
 
     # 1. Run the evaluation
     result = evaluator.evaluate(
@@ -57,6 +54,6 @@ if __name__ == "__main__":
 
     # 2. Save it to your results file (using your config for the path!)
     # Assuming config.OUTPUT_PATH is defined in your config.py
-    evaluator.save_results(result, "transcription_results.jsonl")
+    evaluator.save_results(result, "audio_ingestion_results.jsonl")
 
     print(f"Evaluation Complete: {result}")

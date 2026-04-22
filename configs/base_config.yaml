@@ -1,0 +1,7 @@
+paths:
+  results_dir: 'data/results'
+  golden_dir: 'data/golden'
+
+thresholds:
+  max_wer: 0.2
+  min_sentiment_confidence: 0.8

@@ -1,9 +1,9 @@
 import pytest
-from packages.eval_runners.transcription.transcription_eval import TranscriptionEval
+from packages.eval_runners.audio_ingestion.audio_ingestion_eval import AudioIngestionEval
 
 def test_wer_calculation():
     # Arrange: Set up our tool
-    evaluator = TranscriptionEval()
+    evaluator = AudioIngestionEval()
     reference = "the cat sat on the mat"
     hypothesis = "the cat sat on the rug" # One word wrong (rug vs mat)
     

@@ -1,10 +1,13 @@
+# Python build artifacts
+*.egg-info/
 __pycache__/
-*.pyc
-.env
-venv/
-.DS_Store
-*.jsonl
-*.log
-errors.log
+build/
+dist/
+
+# Environment
 .venv/
-.pytest_cache/
+.env
+
+# Project Data (We track the code, not the raw data/results)
+data/results/
+data/golden/

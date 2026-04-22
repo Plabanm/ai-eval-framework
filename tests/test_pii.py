@@ -1,10 +1,10 @@
 import pytest
-from packages.eval_runners.transcription.transcription_eval import TranscriptionEval
+from packages.eval_runners.audio_ingestion.audio_ingestion_eval import AudioIngestionEval
 
 def test_pii_detection_catches_phone_number():
     # Arrange
-    evaluator = TranscriptionEval()
-    # A transcription where the AI forgot to redact a UK mobile number
+    evaluator = AudioIngestionEval()
+    # An audio-ingestion result where the AI forgot to redact a UK mobile number
     leaked_transcript = "The customer called from 07700 900123 to complain."
     
     # Act
@@ -17,7 +17,7 @@ def test_pii_detection_catches_phone_number():
 
 def test_clean_transcript_has_no_pii():
     # Arrange
-    evaluator = TranscriptionEval()
+    evaluator = AudioIngestionEval()
     clean_transcript = "The customer wanted to talk about their billing cycle."
     
     # Act

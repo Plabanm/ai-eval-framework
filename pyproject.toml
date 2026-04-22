@@ -10,7 +10,16 @@ dependencies = [
     "jiwer",
     "presidio-analyzer",
     "presidio-anonymizer",
-    "spacy"
+    "spacy",
+    "fastapi[standard]",
+    "uvicorn",
+    "pyyaml",
+    "python-dotenv",
+    "requests",
+    "google-genai",   # <--- The 2026 SDK
+    "google-auth",     # Essential for cloud credentials
+    streamlit,
+    plotly
 ]
 
 [tool.setuptools]

@@ -1,5 +1,0 @@
-pandas
-jiwer
-presidio-analyzer
-presidio-anonymizer
-spacy

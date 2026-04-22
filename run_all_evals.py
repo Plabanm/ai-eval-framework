@@ -5,20 +5,20 @@ def run_enterprise_eval():
     # 1. Initialize our Data 'Plumbing'
     registry = DatasetRegistry(data_path="data/results")
     
-    # 2. Load Service 1 (Transcription) results to see what needs more work
-    transcription_df = registry.get_service_df("transcription")
+    # 2. Load Service 1 (AudioIngestion) results to see what needs more work
+    audio_ingestion_df = registry.get_service_df("audio_ingestion")
     
-    # 3. We only want to run Enrichment eval on calls that passed Transcription PII check
-    clean_calls = transcription_df[transcription_df['pii_detected'] == False]
+    # 3. We only want to run SemanticEnrichment eval on calls that passed AudioIngestion PII check
+    clean_calls = audio_ingestion_df[audio_ingestion_df['pii_detected'] == False]
     
-    print(f"🚀 Found {len(clean_calls)} clean calls to process for Enrichment.")
+    print(f"Found {len(clean_calls)} clean calls to process for SemanticEnrichment.")
 
     # 4. Run the next service in the pipeline
-    enrichment_runner = get_evaluator("enrichment")
+    semantic_enrichment_runner = get_evaluator("semantic_enrichment")
     
     for index, row in clean_calls.iterrows():
         # Using row data to feed the next eval
-        result = enrichment_runner.evaluate(
+        result = semantic_enrichment_runner.evaluate(
             call_id=row['call_id'],
             reference_label="positive", # Usually from your 'Golden' dataset
             hypothesis_label="positive"  # This would come from your real Service 2 output

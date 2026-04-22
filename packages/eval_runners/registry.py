@@ -1,10 +1,20 @@
-from packages.eval_runners.transcription.transcription_eval import TranscriptionEval
-from packages.eval_runners.enrichment.enrichment_eval import EnrichmentEval
+from packages.eval_runners.audio_ingestion.audio_ingestion_eval import AudioIngestionEval
+from packages.eval_runners.response_synthesis.response_synthesis_eval import ResponseSynthesisEval
+from packages.eval_runners.semantic_enrichment.semantic_enrichment_eval import SemanticEnrichmentEval
+from packages.eval_runners.route_judge.route_judge_eval import RouteJudgeEval
 
 # The "Brain" of the framework
 EVALUATOR_REGISTRY = {
-    "transcription": TranscriptionEval,
-    "enrichment": EnrichmentEval
+    "audio_ingestion": AudioIngestionEval,
+    "semantic_enrichment": SemanticEnrichmentEval,
+    "route_judge": RouteJudgeEval,
+    "response_synthesis": ResponseSynthesisEval,  # <--- Add this line!
+    
+    # Aliases
+    "transcription": AudioIngestionEval,
+    "enrichment": SemanticEnrichmentEval,
+    "relevancy": RouteJudgeEval,
+    "summarization": ResponseSynthesisEval,       # <--- Professional alias
 }
 
 def get_evaluator(service_name):

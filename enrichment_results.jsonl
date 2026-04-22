@@ -1,0 +1,6 @@
+{"call_id": "CALL_101", "metric": "sentiment_accuracy", "reference": "positive", "hypothesis": "positive", "score": 1.0, "eval_timestamp": "2026-04-19T14:41:23.506842"}
+{"call_id": "CALL_102", "metric": "sentiment_accuracy", "reference": "negative", "hypothesis": "neutral", "score": 0.0, "eval_timestamp": "2026-04-19T14:41:23.507203"}
+{"call_id": "CALL_101", "metric": "sentiment_accuracy", "reference": "positive", "hypothesis": "positive", "score": 1.0, "eval_timestamp": "2026-04-19T14:44:13.132724"}
+{"call_id": "CALL_102", "metric": "sentiment_accuracy", "reference": "negative", "hypothesis": "neutral", "score": 0.0, "eval_timestamp": "2026-04-19T14:44:13.133379"}
+{"call_id": "CALL_101", "metric": "sentiment_accuracy", "reference": "positive", "hypothesis": "positive", "score": 1.0, "eval_timestamp": "2026-04-19T14:44:24.453935"}
+{"call_id": "CALL_102", "metric": "sentiment_accuracy", "reference": "negative", "hypothesis": "neutral", "score": 0.0, "eval_timestamp": "2026-04-19T14:44:24.454662"}

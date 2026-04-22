@@ -1,7 +1,6 @@
-
 from packages.eval_runners.base_eval import BaseEval
 
-class EnrichmentEval(BaseEval):
+class SemanticEnrichmentEval(BaseEval):
     def __init__(self):
         super().__init__()
         self.stats = {"tp": 0, "fp": 0, "fn": 0, "tn": 0}
@@ -36,5 +35,6 @@ class EnrichmentEval(BaseEval):
             "recall": round(recall, 4),
             "precision": round(precision, 4)
         }
+        self.save_results(result)
         self.results.append(result)
         return result
